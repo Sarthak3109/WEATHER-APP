@@ -26,14 +26,14 @@ ChartJS.register(
 
 
 
-
+// ChartJS.defaults.global.legend.display = false;
 export default function LineChart({x_axis_data}) {
   
 const [data, setdata ]= useState({
   labels: ['TODAY', 'ONE DAY AFTER', 'TWO DAYS AFTER', 'THREE DAYS AFTER', 'FOUR DAYS AFTER'],
   datasets: [
     {
-      label: 'WEATHER FORECAST OF NEXT 5 DAYS',
+      label: 'WEATHER FORECAST',
       data: x_axis_data,
       fill: false,
       borderColor: 'black',
@@ -44,9 +44,12 @@ const [data, setdata ]= useState({
 
 
   const options = {
-  
-    legend: {
-      display: false, // Set display property to false to hide the legend key
+    
+   
+    plugins : {
+      legend : {
+        display : false
+      }
     },
     scales: {
       x: {
@@ -87,7 +90,7 @@ const [data, setdata ]= useState({
   
   
   useEffect(()=>{
-    console.log(x_axis_data)
+    
     setdata((prevState) => ({
       ...prevState,
       datasets: [
@@ -100,10 +103,10 @@ const [data, setdata ]= useState({
   }, [x_axis_data])
 
   return(
-    
-  <div className='text-[200px]    flex items-center justify-center h-[100%] w-[60%] '>
-    
-  <Line options={options} data={data} className=' min-w-[100%] min-h-[70%]' />
+    // min-w-[3vw]
+  <div className= 'flex flex-col items-center mt-2 p-0 justify-center h-[200px] sm:h-[350px] md:h-[340px] lg:h-[300px] xl:h-[100%] w-[100%] xl:w-[60%]  lg:w-[90%]'>
+    <div className='text-[0.8rem] sm:text-[1rem] text-[black] font-bold'>WEATHER FORECAST FOR NEXT 5 DAYS</div>
+  <Line options={options} data={data} className=' ' />
 
 
   </div>

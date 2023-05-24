@@ -5,8 +5,9 @@ import Typewriter from "typewriter-effect"
 
 const InfoCard = ({humidity , pressure , temp , max_temp, min_temp}) => {
   return (
-    <div className='flex justify-center items-center  text-[black] ml-[20px] '>
-    <div className='min-h-[10vh]  mb-[20px] lg:mb-[0px] min-w-[3vw] shadow-xl shadow-[#734F96] p-2 bg-[#BF94E4] bg-opacity-[0.3] rounded-lg m-[auto] flex flex-col items-center gap-2 justify-between text-[1.3rem]'>
+    // min-w-[3vw]
+    <div className='flex justify-center items-center  text-[black]  '>
+    <div className='min-h-[10vh]  mb-[20px] lg:mb-[0px]  shadow-xl shadow-[#734F96] m-1 px-1 sm:px-[20px] md:px-[40px] xl:px-2 bg-[#BF94E4] bg-opacity-[0.3] rounded-lg m-[auto] flex flex-col items-center gap-2 justify-between text-[0.8rem] sm:text-[1rem] md:text-[1.1rem] lg:text-[1.3rem] mt-2 lg:mt-0'>
         <div>
           
             <Typewriter onInit = {

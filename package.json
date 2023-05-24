@@ -11,8 +11,6 @@
     "@testing-library/user-event": "^13.5.0",
     "chart.js": "^4.3.0",
     "cities.json": "^1.1.20",
-    "dotenv": "^16.0.3",
-    "faker": "^6.6.6",
     "framer-motion": "^10.12.12",
     "gh-pages": "^5.0.0",
     "react": "^18.2.0",

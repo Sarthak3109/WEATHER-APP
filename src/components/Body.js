@@ -17,11 +17,9 @@ const Body = ({city}) => {
     const [imageURL,setImageURL] = useState(".../public/weather_images/clear.png")
     const [humidity, sethumidity] = useState(0)
     const [temp, settemp] = useState(0)
-
     const [max_temp, setmax_temp] = useState(0)
-
     const [min_temp, setmin_temp] = useState(0)
-
+    const [City, setCity] = useState(city)
     const [pressure, setpressure] = useState(0)
     const [foreCastTemp, setforeCasttemp] = useState([])
    const[foreCastDetails, setforeCastDetails] = useState([])
@@ -32,8 +30,7 @@ const Body = ({city}) => {
 
     useEffect(()=>{
      const url = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=${APIKEY}`
-    
-     setloading(0)
+    setloading(0)
     fetch(url)
     .then(response => response.json())
     .then(data => {
@@ -42,17 +39,23 @@ const Body = ({city}) => {
         }else{
             setloading(1)
             const str = data.weather[0].main.toLowerCase()
-            console.log(str)
+         
             sethumidity(data.main.humidity)
             settemp(data.main.temp)
             setmax_temp(data.main.temp_max)
             setmin_temp(data.main.temp_min)
             setpressure(data.main.pressure)
+
+            if(Number(city) != NaN)
+                setCity(data.name)
          
         }
         
         
     } )
+
+
+
 
 
     const forecastURL = `https://api.openweathermap.org/data/2.5/forecast?units=metrics&q=${city}&appid=${APIKEY}`
@@ -89,12 +92,15 @@ const Body = ({city}) => {
 
 
 
+
+
+
     function scrollLeft(e){
-        myRef.current.scrollBy(-300,0)
+        myRef.current.scrollBy(-(myRef.current.clientWidth - 2),0)
         e.target.opacity = 0.5
     }
     function scrollRight(){
-        myRef.current.scrollBy(300,0)
+        myRef.current.scrollBy(myRef.current.clientWidth - 2,0)
     }
 
 
@@ -107,9 +113,8 @@ const Body = ({city}) => {
 
 
   return (
-    // h78vh
     
-    <div className='bg-[white]  h-[78vh] w-[60vw] m-[auto] mt-[5vh]  bg-opacity-50 rounded-lg '>
+    <div className='bg-[white] relative min-h-[78vh] sm:w-[87vw] md:w-[80vw] 2xl:w-[60vw] m-[auto] mt-[5vh]  bg-opacity-50 rounded-lg '>
         {
                 loading === 0 ? 
                 (   
@@ -123,8 +128,8 @@ const Body = ({city}) => {
                 (
                     loading === 1 ? 
                     (<>
-                    <div className=' h-[78vh] flex flex-col justify-between  shadow-xl shadow-[grey]'>
-                        <div class='flex justify-center items-center flex-col lg:flex-row h-[70%]  text-center'>]
+                    <div className=' min-h-[78vh]   flex flex-col justify-between  shadow-xl shadow-[grey]'>
+                        <div class='flex justify-center items-center flex-col xl:flex-row h-[70%]  text-center'>
                       
                         <LineChart x_axis_data = {foreCastTemp} />  
                       
@@ -135,18 +140,12 @@ const Body = ({city}) => {
                         </div>
                         
 
-                        <div className='relative  '>
-                        <div ref = {myRef} className='w-[60vw] h-[100%] card-container scroll-smooth flex  overflow-x-scroll '>
-                            {/* <WeatherCard />
-                            <WeatherCard />
-                            <WeatherCard />
-                            <WeatherCard />
-
-                            <WeatherCard /> */}
+                        <div className='relative  w-[100%]'>
+                        <div ref = {myRef} className='w-[100%] h-[100%] card-container scroll-smooth flex  overflow-x-scroll '>
 
                          {   foreCastDetails.map(ele=>{
                                 return(
-                                    <WeatherCard imgurl = {ele.imgurl} day = {ele.day} city = {city} humidity = {ele.humidity} temp = {ele.temp} condition = {ele.condition} pressure = {ele.pressure} />
+                                    <WeatherCard imgurl = {ele.imgurl} day = {ele.day} city = {City} humidity = {ele.humidity} temp = {ele.temp} condition = {ele.condition} pressure = {ele.pressure} />
                                 )
                             })}
                             
@@ -166,9 +165,9 @@ const Body = ({city}) => {
 
 
 
-                    : ( <div className = 'shadow-xl shadow-[grey] h-[100%]'>
+                    : ( <div className = 'shadow-xl absolute top-[50%] w-[100%] translate-y-[-50%] flex flex-col justify-between  h-[90%]'>
                         <ErrorLoading />
-                     <div className='h-[30%]  text-[grey] flex justify-center items-center text-[3em]'>
+                     <div className='h-[30%]  text-[grey] flex justify-center items-center  text-[1.5em] sm:text[2em] md:text-[2.2em] lg:text-[2.5em]'>
                            CITY OR ZIPCODE NOT RECOGNIZED
                         </div>
                         </div>

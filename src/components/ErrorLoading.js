@@ -2,7 +2,7 @@ import React from 'react'
 import { Radio } from 'react-loader-spinner'
 const ErrorLoading = () => {
   return (
-    <div className='w-[100%] h-[70%] flex justify-center items-center '>
+    <div className='w-[100%] flex justify-center items-center '>
                 
     <Radio
    visible={true}

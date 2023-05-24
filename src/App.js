@@ -12,7 +12,7 @@ function App() {
 
   }, [])
   return (
-    <div className= {`App  bg-[#b7e1f7] min-h-[100vh]       
+    <div className= {`App  bg-[#b7e1f7]  min-h-[100vh]    max-w-[200vw] max-h-[300vh]
     bg-center bg-cover`}>
 
       <NavBar dict = {data} />
