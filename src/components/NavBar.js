@@ -48,7 +48,7 @@ const NavBar = ({dict}) => {
   return (
     <div className='text-center  m-[auto] w-[80vw]  pt-[4vh] pb-[2vh] relative text-[white] font-serif ' >
       <div className='flex justify-center  items-center'>
-          <Input  variant='flushed' placeholderStyle={{ fontSize: "1px" }} color='#2C051A' onKeyDown={e => handleEnter(e)} _placeholder={{color: '#3A405A' }} placeholder='Enter City /  Zip Code' fontSize='2rem'  value ={value}   className='text-center  p-[3%] ' onChange={handlechange} />
+          <Input  variant='flushed' placeholderStyle={{ fontSize: "1px" }} color='#2C051A' onKeyDown={e => handleEnter(e)} _placeholder={{color: '#3A405A' }} placeholder='Enter City /  Zip Code' fontSize={{ base: '1rem', sm: '1.5rem', md: '1.8rem', lg: '2rem' }}  value ={value}   className='text-center  p-[3%] ' onChange={handlechange} />
          <button onClick={search}> <AiOutlineSearch className='text-3xl text-[#3A405A]' /></button>
           </div>
           <div className='relative w-[80vw]'>
